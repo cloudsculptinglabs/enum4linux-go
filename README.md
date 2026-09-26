@@ -45,6 +45,7 @@ GPL-3.0-or-later, matching the original enum4linux. See [`LICENSE`](./LICENSE).
 
 ## Roadmap
 
+- [ ] Native SMB session layer for true anonymous/null sessions (go-smb2 only does guest)
 - [ ] Native SAMR/LSA (users, groups, RID cycling) — drop the rpcclient dependency
 - [ ] NetBIOS name / OS fingerprint via native queries
 - [ ] Concurrent multi-host scanning from a target file

@@ -27,6 +27,13 @@ func Connect(host, user, pass, domain string, timeout time.Duration) (*Session, 
 	if err != nil {
 		return nil, fmt.Errorf("dial %s:445: %w", host, err)
 	}
+	// go-smb2 does not support true anonymous/null sessions; when no
+	// credentials are supplied, fall back to a guest session (the closest
+	// equivalent, and what the library recommends). Native null-session
+	// support is a roadmap item.
+	if user == "" {
+		user = "Guest"
+	}
 	d := &smb2.Dialer{
 		Initiator: &smb2.NTLMInitiator{User: user, Password: pass, Domain: domain},
 	}
